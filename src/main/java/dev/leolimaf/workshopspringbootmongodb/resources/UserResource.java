@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/users")
-public class UserResources {
+public class UserResource {
 
     @Autowired
     private UserService service;
