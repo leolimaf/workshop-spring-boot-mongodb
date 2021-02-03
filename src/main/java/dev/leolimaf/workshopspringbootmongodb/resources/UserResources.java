@@ -1,5 +1,6 @@
 package dev.leolimaf.workshopspringbootmongodb.resources;
 
+import dev.leolimaf.workshopspringbootmongodb.domain.Post;
 import dev.leolimaf.workshopspringbootmongodb.domain.User;
 import dev.leolimaf.workshopspringbootmongodb.dto.UserDTO;
 import dev.leolimaf.workshopspringbootmongodb.services.UserService;
@@ -54,6 +55,10 @@ public class UserResources {
         return ResponseEntity.noContent().build();
     }
 
-
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
+    }
 
 }
