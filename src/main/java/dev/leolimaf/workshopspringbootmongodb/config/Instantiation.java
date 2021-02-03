@@ -2,6 +2,7 @@ package dev.leolimaf.workshopspringbootmongodb.config;
 
 import dev.leolimaf.workshopspringbootmongodb.domain.Post;
 import dev.leolimaf.workshopspringbootmongodb.domain.User;
+import dev.leolimaf.workshopspringbootmongodb.dto.AuthorDTO;
 import dev.leolimaf.workshopspringbootmongodb.repositories.PostRepository;
 import dev.leolimaf.workshopspringbootmongodb.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +36,11 @@ public class Instantiation implements CommandLineRunner {
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
 
-        Post post1 = new Post(null, sdf.parse("21/03/2018"),"Let's go!", "I'm gonna travel to São Paulo", maria);
-        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Good morning!", "Hey guys! Good morning!", maria);
-
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
+        Post post1 = new Post(null, sdf.parse("21/03/2018"),"Let's go!", "I'm gonna travel to São Paulo", new AuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Good morning!", "Hey guys! Good morning!", new AuthorDTO(maria));
+
         postRepository.saveAll(Arrays.asList(post1,post2));
 
     }
